@@ -18,6 +18,8 @@ app.register(require('@fastify/static'), {
   prefix: '/uploads',
 })
 
+/*Configuração do cors */
+/*Sem a especificação de url, ele aceita requisição de qualquer front-end */
 app.register(cors, {
   origin: true,
 })
