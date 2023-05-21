@@ -5,6 +5,10 @@ import { createWriteStream } from 'node:fs'
 import { pipeline } from 'node:stream'
 import { promisify } from 'node:util'
 
+/**
+ * O pipeline aguarda que uma promise termine
+ * O promisify recupera o valor final do promise
+ */
 const pump = promisify(pipeline)
 
 export async function uploadRoutes(app: FastifyInstance) {
@@ -18,7 +22,9 @@ export async function uploadRoutes(app: FastifyInstance) {
     if (!upload) {
       return reply.status(400).send()
     }
-
+/**
+ * mimeType verifica se o arquivo que subiu é do tipo imagem ou vídeo
+ */
     const mimeTypeRegex = /^(image|video)\/[a-zA-Z]+/
     const isValidFileFormat = mimeTypeRegex.test(upload.mimetype)
 
