@@ -28,9 +28,10 @@ export default function Layout() {
     Roboto_700Bold,
     BaiJamjuree_700Bold,
   })
-
+{/* O useEffect serve para disparar uma função sempre que o valor de uma variável mudar */}
   useEffect(() => {
     SecureStore.getItemAsync('token').then((token) => {
+      {/* Pega o valor do token e verifica se tem algo lá, se tiver ele retorna true, caso contrário false */}
       setIsUserAuthenticated(!!token)
     })
   }, [])
@@ -47,13 +48,14 @@ export default function Layout() {
     >
       <StyledStripes className="absolute left-2" />
       <StatusBar style="light" translucent />
-
+{/* Stack é o tipo de transição entre telas */}
       <Stack
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: 'transparent' },
         }}
       >
+        {/* Se o usuário estiver autenticado, ele será redirecionado para a próxima tela, no caso, 'new'*/}
         <Stack.Screen name="index" redirect={isUserAuthenticated} />
         <Stack.Screen name="new" />
         <Stack.Screen name="memories" />
